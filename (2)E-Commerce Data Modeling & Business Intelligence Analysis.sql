@@ -11,7 +11,6 @@
 -------------------------------------------------------------------------------
 -- STEP 1: Copying the clean data to a new table
 -------------------------------------------------------------------------------
---نسخ البيانات النظيفة إلى جدول جديد 
 select 
 	InvoiceNo_cleand as InvoiceNo_F,
 	StockCode_cleand as StockCode_DP_F,
@@ -75,11 +74,9 @@ INNER JOIN Dim_Customers AS C ON F.Customerid_DC_F = C.Customerid_DC_F
 where f.quantity_F > 0  -- Exclude sales returns (negative quantities)
 	and f.UnitPrice_F> 0 -- Exclude free samples and data entry errors
 ORDER BY TotalPrice DESC;
--- تحديد ال السعر الاجمالي لكل فاتورة في الجدول 
---استخدمت INNER JOIN  عشان تحدد فقط العمليات اللي فيها بيانات كاملة
+--I used INNER JOIN to specify only operations with complete data.
 
-
---(1)Total Price تحليل عمود ال 
+-------------------------------------------------------------------------------------------------
 --1 Identifying the top 10 products
 select top 15
 	p.Description_DP,
@@ -100,6 +97,9 @@ and P.Description_DP not in (
   and P.Description_DP not like '%STOCK%'
 group by p.Description_DP
 order by Total_sales desc;
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+
 --2 Select the 10 least expensive products
 select top 15
 	p.Description_DP,
@@ -120,6 +120,9 @@ and P.Description_DP not in (
   and P.Description_DP not like '%STOCK%'
 group by p.Description_DP
 order by Total_sales asc;
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+
 --3 GEOGRAPHIC SALES PERFORMANCE
 -- Ranks countries by revenue and total order volume
 select 
@@ -145,7 +148,8 @@ and f.UnitPrice_F> 0
 
 group by c.country_DC
 order by Total_sales desc;
-
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
 
 --4 VIP CUSTOMER ANALYSIS (TOP 30)
 select top 30
@@ -169,6 +173,8 @@ and P.Description_DP not in (
   and P.Description_DP not like '%STOCK%'
 group by f.Customerid_DC_F ,c.country_DC
 order by custemer_spend desc;
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
 
 --5 SALES SEASONALITY & TREND ANALYSIS
 -- Monthly revenue trends including day count to investigate data anomalies (e.g., Dec 2011)

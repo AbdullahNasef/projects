@@ -261,6 +261,8 @@ alter view dbo.v_cleanData as
 	f.InvoiceDate_F,
 	p.Description_DP,
 	f.Customerid_DC_F,
+	f.Quantity_F,      
+    f.UnitPrice_F,
 	c.country_DC,
 	(f.quantity_F * f.UnitPrice_F) as rowtotal
 from Fact_salse f

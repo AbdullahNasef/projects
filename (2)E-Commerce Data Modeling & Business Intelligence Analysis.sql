@@ -53,7 +53,7 @@ into Fact_salse
 from Ecoomerce_cleaned;
 --=================================================================================
 -------------------------------------------------------------------------------
--- STEP 4: CORE BUSINESS ANALYSIS & REPORTING
+-- STEP 3: CORE BUSINESS ANALYSIS & REPORTING
 -------------------------------------------------------------------------------
 -- NOTE: The following queries use JOINsfor immediate data exploration.
 -- In the next stage,we will encapsulate this logic into a"View" 
